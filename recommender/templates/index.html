@@ -6,6 +6,8 @@
 
     <h3 class="mb-0">News Recommender</h3>
 
+    {% include 'user_select.html' %}
+
     {% for article in  articles %}
       {% include 'article.html' %}
     {% endfor %}
