@@ -2,5 +2,15 @@ from django.shortcuts import render
 
 
 def index(request):
-    data_to_populate_template = {'message': 'Stuff to populate template with'}
-    return render(request, 'index.html', data_to_populate_template)
+    articles = [
+        {
+            'title': 'Article 1',
+            'url': 'https://omni.se/'
+        },
+        {
+            'title': 'Article 2',
+            'url': 'https://omni.se/'
+        }
+    ]
+    context = {'articles': articles}
+    return render(request, 'index.html', context)
