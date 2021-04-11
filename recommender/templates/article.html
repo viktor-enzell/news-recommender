@@ -1,3 +1,8 @@
-<a href="{{ article.url }}">
-  <p>{{ article.title }}</p>
-</a>
+<hr/>
+<p>
+  <a href="{{ article.url }}">
+    {{ article.title }}
+  </a>
+</p>
+{% include 'like_article.html' %}
+<hr/>
