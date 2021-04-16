@@ -35,7 +35,7 @@ def index(request):
         return render(request, 'index.html', context)
 
     if request.method == 'POST':
-        if request.POST.get('select_user', False):
+        if request.POST.get('user', False):
             # Handle post request for selecting user
             form = UserForm(request.POST, available_users=available_users)
             if form.is_valid():

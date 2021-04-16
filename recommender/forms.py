@@ -12,5 +12,8 @@ class UserForm(forms.Form):
             self.fields['user'].choices = available_users
 
     user = forms.ChoiceField(
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.Select(attrs={
+            'class': 'form-select',
+            'onchange': 'this.form.submit()'
+        })
     )
