@@ -6,53 +6,18 @@
 
     <h2 class="mb-0">News Recommender</h2>
 
-	<br>
-	<form method="get">
-		<input type="text" placeholder="Search..." name="searchquery">
-	</form>
-
-    {% for article in articles %}
-      {% include 'article.html' %}
-    {% endfor %}
+    {% include 'select_user.html' %}
 
     <br>
-    <h3 id="selectedtitle"></h3>
-    <p id="selectedtext"></p>
-    <p id="articleID" style="display: none;"></p>
+    <form method="get">
+      <input type="text" class="mb-4" placeholder="Search..." name="searchquery">
+    </form>
 
-	<form method="post" id="frm">
-		{% csrf_token %}
-		<input type="image" src="" width="30" height="30" style="display: none;" id="likebutton" onclick="like()" name="like" value="">
-		<input type="image" src="" width="30" height="30" style="display: none;" id="dislikebutton" onclick="dislike()" name="dislike" value="">
-	</form>
-
-	<script>
-		var $ = jQuery.noConflict();
-		$(document).on('submit', '.frm', function(e){
-		e.preventDefault();
-		$.ajax({
-		    type: $(this).attr('method'), 
-		    url: this.action, 
-		    data: $(this).serialize(),
-		    context: this
-		    /*success: function(){
-		        alert(document.getElementById("articleID").innerHTML);
-		    }*/
-		})
-		});
-	</script>
-
-	<script> function like() {
-		document.getElementById("likebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-glyph-1/32/-_Thumb-up-Like-Hand-Approve-512.png";
-		document.getElementById("dislikebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png";
-	}
-	function dislike() {
-		document.getElementById("dislikebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-glyph-1/32/-_Thumb-Down-Dislike-Hand-512.png";
-		document.getElementById("likebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png";
-	}
-
-	</script>
+    <div class="accordion accordion-flush" id="article-wrapper">
+      {% for article in articles %}
+        {% include 'article.html' %}
+      {% endfor %}
+    </div>
 
   </div>
-
 {% endblock %}
