@@ -23,9 +23,8 @@ def index(request):
             articles = recommender.recommend_articles(user)
             form = UserForm(initial_user=user, available_users=available_users)
         else:
-            # If user is not selected, return a set of random articles.
-            # Maybe return no articles before user is selected instead?.
-            articles = recommender.get_random_articles()
+            # If user is not selected, return no articles
+            articles = []
             form = UserForm(available_users=available_users)
 
         context = {

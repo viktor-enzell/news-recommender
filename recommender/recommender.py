@@ -7,21 +7,6 @@ class Recommender:
         available_users = (('user_0', 'No user selected'), ('user_1', 'User 1'), ('user_2', 'User 2'),)
         return available_users
 
-    def get_random_articles(self):
-        articles = [
-            {
-                'title': 'Random article 1',
-                'id': '1',
-                'url': 'https://omni.se/'
-            },
-            {
-                'title': 'Random article 2',
-                'id': '2',
-                'url': 'https://omni.se/'
-            }
-        ]
-        return articles
-
     def recommend_articles(self, user_id):
         articles = []
 
