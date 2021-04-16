@@ -1,3 +1,30 @@
-<a href="{{ article.url }}">
-  <p>{{ article.title }}</p>
-</a>
+<form>
+	<br>
+	<input type="button" value="{{article.title}}" onclick="displayArticle('{{article.title}}','{{article.text}}','{{article.like}}','{{article.id}}')">
+</form>
+
+
+
+<script>
+	function displayArticle(title, text, like, id) {
+		document.getElementById("selectedtitle").innerHTML = title;
+		document.getElementById("selectedtext").innerHTML = text;
+		document.getElementById("articleID").innerHTML = id;
+		document.getElementById("likebutton").style = "";
+		document.getElementById("dislikebutton").style = "";
+		document.getElementById("likebutton").value = id;
+		document.getElementById("dislikebutton").value= id;
+		if (like == "1") {
+			document.getElementById("likebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-glyph-1/32/-_Thumb-up-Like-Hand-Approve-512.png";
+			document.getElementById("dislikebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png";
+		}
+		else if (like == "-1"){
+			document.getElementById("likebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png";
+			document.getElementById("dislikebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-glyph-1/32/-_Thumb-Down-Dislike-Hand-512.png";
+		}
+		else {
+			document.getElementById("likebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png";
+			document.getElementById("dislikebutton").src = "https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png";
+		}
+	}
+</script> 
