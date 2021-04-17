@@ -17,3 +17,13 @@ class UserForm(forms.Form):
             'onchange': 'this.form.submit()'
         })
     )
+
+
+class SearchForm(forms.Form):
+    search_bar = forms.CharField(
+        widget=forms.TextInput(attrs={
+            'type': 'text',
+            'class': 'form-control',
+            'placeholder': 'Search for news...'
+        })
+    )
