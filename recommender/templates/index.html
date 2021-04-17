@@ -4,13 +4,25 @@
 {% block content %}
   <div class="container py-4" style="max-width: 760px;">
 
-    <h2 class="mb-0">News Recommender</h2>
+    <h1 class="fs-2 mb-0">News Recommender</h1>
 
-    {% include 'select_user.html' %}
+    <form action="/" method="post">
+      {% csrf_token %}
+      {{ user_form.non_field_errors }}
+      <div class="mb-3">
+        {{ user_form.user.errors }}
+        <label for="{{ user_form.user.id_for_label }}" class="col-form-label">Select user</label>
+        {{ user_form.user }}
+      </div>
+    </form>
 
-    <br>
-    <form method="get">
-      <input type="text" class="mb-4" placeholder="Search..." name="searchquery">
+    <form action="/" method="get">
+      {% csrf_token %}
+      {{ search_form.non_field_errors }}
+      <div class="mb-3">
+        {{ search_form.search_bar.errors }}
+        {{ search_form.search_bar }}
+      </div>
     </form>
 
     <div class="accordion accordion-flush" id="article-wrapper">

@@ -1,10 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from .forms import UserForm
+from .forms import UserForm, SearchForm
 from .recommender import Recommender
 
-# Not sure if having recommender as a separate class is the "Django way of doing things".
 recommender = Recommender()
 
 
@@ -18,36 +17,59 @@ def index(request):
         user = request.session.get('user', None)
 
         if user and user != 'user_0':
-            # If user is already selected, return recommended articles
-            query = ''
-            search_type = ''
-            articles = recommender.recommend_articles_example(user)
-            form = UserForm(initial_user=user, available_users=available_users)
-        else:
-            # If user is not selected, return no articles
-            articles = []
-            form = UserForm(available_users=available_users)
+            # If user is already selected, return search form
+            user_form = UserForm(initial_user=user, available_users=available_users)
 
-        context = {
-            'form': form,
-            'articles': articles
-        }
-        return render(request, 'index.html', context)
+            if request.GET.get('search_bar', False):
+                # If user has entered a search query, return corresponding articles
+                search_form = SearchForm(request.GET)
+                if search_form.is_valid():
+                    query = search_form.cleaned_data.get('search_bar', False)
+                    if query:
+                        search_type = ''  # TODO: replace with search type
+                        articles = recommender.recommend_articles(user, query, search_type)
+                        context = {
+                            'user_form': user_form,
+                            'search_form': search_form,
+                            'articles': articles
+                        }
+                        return render(request, 'index.html', context)
+
+            # If user has not entered a search query, return an empty search form
+            search_form = SearchForm()
+            context = {
+                'user_form': user_form,
+                'search_form': search_form
+            }
+            return render(request, 'index.html', context)
+        else:
+            # If user is not selected, return no search form and no articles
+            user_form = UserForm(available_users=available_users)
+            context = {
+                'user_form': user_form,
+                'articles': []
+            }
+            return render(request, 'index.html', context)
 
     if request.method == 'POST':
         if request.POST.get('user', False):
             # Handle post request for selecting user
-            form = UserForm(request.POST, available_users=available_users)
-            if form.is_valid():
-                data = form.cleaned_data
+            user_form = UserForm(request.POST, available_users=available_users)
+            if user_form.is_valid():
+                data = user_form.cleaned_data
                 if data.get('user'):
                     request.session['user'] = data.get('user')
 
-        elif request.POST.get('like_article', False):
+        user = request.session['user']
+        if request.POST.get('like_article', False):
             # Handle post request for user liking article
-            user = request.session['user']
             article = request.POST.get('like_article')
             recommender.like_article(user, article)
+
+        elif request.POST.get('dislike_article', False):
+            # Handle post request for user disliking article
+            article = request.POST.get('dislike_article')
+            recommender.dislike_article(user, article)
 
         # Redirect back to / so that a GET request is sent and the articles are updated
         return HttpResponseRedirect('/')

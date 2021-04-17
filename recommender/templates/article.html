@@ -22,8 +22,12 @@
 
       <form action="/" method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
         <button type="submit" name="like_article" value="{{ article.id }}" class="btn btn-primary">Like</button>
+      </form>
+
+      <form action="/" method="post">
+        {% csrf_token %}
+        <button type="submit" name="dislike_article" value="{{ article.id }}" class="btn btn-primary">Dislike</button>
       </form>
 
     </div>
