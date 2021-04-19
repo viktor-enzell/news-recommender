@@ -22,12 +22,13 @@
 
       <form action="/" method="post">
         {% csrf_token %}
-        <button type="submit" name="like_article" value="{{ article.id }}" class="btn btn-primary">Like</button>
+        <br>
+        <input type="image" name="like_article" value="{{ article.id }}" class="btn btn-primary" width=50 height="40" src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png"></button>
       </form>
 
       <form action="/" method="post">
         {% csrf_token %}
-        <button type="submit" name="dislike_article" value="{{ article.id }}" class="btn btn-primary">Dislike</button>
+        <input type="image" name="dislike_article" value="{{ article.id }}" class="btn btn-primary" width=50 height="40" src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png"></button>
       </form>
 
     </div>
