@@ -1,19 +1,32 @@
 import scrapy
-from item import NewsItem
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
 
-class Spider(scrapy.Spider):
-    name = 'spooder'
-    start_urls = ['https://omni.se/professor-gor-som-uppsala-det-ger-fin-boosteffekt/a/56Kxw6']
+class Spider(CrawlSpider):
+    name = 'news_crawler'
+    allowed_domains = [
+        'www.bbc.com',
+    ]
+    start_urls = [
+        'https://www.bbc.com/news'
+    ]
 
-    def parse(self, response):
-        item = NewsItem()
-        
-        for article in response.css('.article-resourcecolumn--large'):
+    rules = (
+        Rule(
+            LinkExtractor(allow=('news/', )),
+            callback='parse_news',
+            follow=True
+        ),
+    )
+
+    def parse_news(self, response):
+        for article in response.xpath('//article'):
+            text = []
+            for p in article.xpath('//p/text()'):
+                text.append(p.get())
             yield {
-                'title': article.xpath('h1/text()').get(),
-                'text': article.css('.resource--text').get()
+                'url': response.url,
+                'title': article.xpath('//h1/text()').get(),
+                'text': ' '.join(text)
             }
-
-        next_page = response.css('.article-link a::attr("href")').get()
-        if next_page is not None:
-            yield response.follow(next_page, self.parse)
+            break
