@@ -13,12 +13,12 @@ class Command(BaseCommand):
         self.user_names = ['Sanna', 'Tim', 'Adam', 'Viktor']
 
     def handle(self, *args, **options):
-        for name in self.user_names:
+        for i, name in enumerate(self.user_names):
             user = {
                 'name': name,
                 'liked_articles': [],
                 'disliked_articles': [],
                 'vector_representation': []
             }
-            result = self.elastic_client.index(index='users', body=user)
+            result = self.elastic_client.index(index='users', id=i, body=user)
             print(f'Creating user {name} result: {result["result"]}')
