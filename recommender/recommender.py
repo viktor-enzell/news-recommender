@@ -9,34 +9,27 @@ class Recommender:
     def __init__(self):
         self.elastic_client = Elasticsearch(hosts=["localhost"])
 
-    def search(self, query, search_type):
-        # Constructs simple query
-        # matches = []
-        # for s in query.split(" "):
-        #     matches.append({"match": {"text": s}})
-        #
-        # body = {
-        #     "query": {
-        #         "bool": {
-        #             search_type: matches
-        #         }
-        #     }
-        # }
+    def search(self, query, query_type):
         body = {
             "query": {
                 "match": {
-                    "text": query
+                    "text": {
+                        "query": query,
+                        "fuzziness": "AUTO",
+                        "operator": query_type
+                    }
                 }
             }
         }
-        res = self.elastic_client.search(index="scrapy-2021-04", body=body)
+        res = self.elastic_client.search(index="scrapy-2021-04", body=body, size=10)
         return res['hits']['hits']
 
-    def recommend_articles(self, user_id, query, search_type):
+    def recommend_articles(self, user_id, query, query_type):
         # TODO: replace dummy code above
         print(f'user {user_id} searched for {query}')
-        articles = self.search(query, search_type)
+        articles = self.search(query, 'or')
         articles = map(lambda x: x['_source'], articles)
+        
         # if user_id == 'user_1':
         #     articles = [
         #         {
