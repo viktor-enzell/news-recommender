@@ -74,7 +74,7 @@ class Recommender:
                 }
             }
         )
-        self.update_user_vectors(user_id)
+        self.update_centroids(user_id)
 
     def dislike_article(self, user_id, article_id):
         print(f'User {user_id} disliked article {article_id}')
@@ -114,9 +114,9 @@ class Recommender:
                 }
             }
         )
-        self.update_user_vectors(user_id)
+        self.update_centroids(user_id)
 
-    def update_user_vectors(self, user_id):
+    def update_centroids(self, user_id):
         liked_articles, disliked_articles = self.get_reviewed_articles(user_id)
         like_centroid = []
         dislike_centroid = []
