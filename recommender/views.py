@@ -16,7 +16,7 @@ def index(request):
     if request.method == 'GET':
         user = request.session.get('user', None)
 
-        if user and user != 'user_0':
+        if user and user != 'no_user_selected':
             # If user is already selected, return search form
             user_form = UserForm(initial_user=user, available_users=available_users)
 
@@ -26,12 +26,14 @@ def index(request):
                 if search_form.is_valid():
                     query = search_form.cleaned_data.get('search_bar', False)
                     if query:
-                        search_type = ''  # TODO: replace with search type
-                        articles = recommender.recommend_articles(user, query, search_type)
+                        articles = recommender.recommend_articles(user, query)
+                        liked_articles, disliked_articles = recommender.get_reviewed_articles(user)
                         context = {
                             'user_form': user_form,
                             'search_form': search_form,
-                            'articles': articles
+                            'articles': articles,
+                            'liked_articles': liked_articles,
+                            'disliked_articles': disliked_articles
                         }
                         return render(request, 'index.html', context)
 

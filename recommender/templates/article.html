@@ -22,13 +22,20 @@
 
       <form action="/" method="post">
         {% csrf_token %}
-        <br>
-        <input type="image" name="like_article" value="{{ article.id }}" class="btn btn-primary" width=50 height="40" src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png"></button>
+        <button type="submit" name="like_article" value="{{ article.id }}"
+                class="btn {% if article.id in liked_articles %}btn-primary{% endif %}">
+          <img alt="like" width="50" height="40"
+               src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png"/>
+        </button>
       </form>
 
       <form action="/" method="post">
         {% csrf_token %}
-        <input type="image" name="dislike_article" value="{{ article.id }}" class="btn btn-primary" width=50 height="40" src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png"></button>
+        <button type="submit" name="dislike_article" value="{{ article.id }}"
+                class="btn {% if article.id in disliked_articles %}btn-primary{% endif %}">
+          <img alt="like" width="50" height="40"
+               src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png">
+        </button>
       </form>
 
     </div>
