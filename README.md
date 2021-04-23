@@ -15,6 +15,21 @@ Start the Django server:
 python manage.py runserver
 ```
 
+### Elasticsearch
+In order to run the project, articles have to be crawled and users-profiles need to be defined. 
+Both articles and user-profiles are stored in Elasticsearch and are imported using Django commands.
+
+Import articles from BBC:
+```
+python manage.py crawl
+```
+
+Initialize user-profiles:
+```
+python manage.py create_users
+```
+
+
 ## Project Structure
 The project is roughly structured as follows. 
 ```
