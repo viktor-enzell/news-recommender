@@ -1,5 +1,6 @@
 from elasticsearch import Elasticsearch
 import json
+import numpy as np
 
 
 class Recommender:
@@ -46,6 +47,7 @@ class Recommender:
             self.elastic_client.update(
                 index='users',
                 id=user_id,
+                refresh='wait_for',
                 body={
                     'script': {
                         'source': f'ctx._source.disliked_articles'
@@ -61,6 +63,7 @@ class Recommender:
         self.elastic_client.update(
             index='users',
             id=user_id,
+            refresh='wait_for',
             body={
                 'script': {
                     'source': 'ctx._source.liked_articles.add(params.liked_articles)',
@@ -71,6 +74,7 @@ class Recommender:
                 }
             }
         )
+        self.update_user_vectors(user_id)
 
     def dislike_article(self, user_id, article_id):
         print(f'User {user_id} disliked article {article_id}')
@@ -83,6 +87,7 @@ class Recommender:
             self.elastic_client.update(
                 index='users',
                 id=user_id,
+                refresh='wait_for',
                 body={
                     'script': {
                         'source': f'ctx._source.liked_articles'
@@ -98,6 +103,7 @@ class Recommender:
         self.elastic_client.update(
             index='users',
             id=user_id,
+            refresh='wait_for',
             body={
                 'script': {
                     'source': 'ctx._source.disliked_articles.add(params.disliked_articles)',
@@ -105,6 +111,31 @@ class Recommender:
                     'params': {
                         'disliked_articles': article_id
                     }
+                }
+            }
+        )
+        self.update_user_vectors(user_id)
+
+    def update_user_vectors(self, user_id):
+        liked_articles, disliked_articles = self.get_reviewed_articles(user_id)
+        like_centroid = []
+        dislike_centroid = []
+
+        if len(liked_articles) > 0:
+            like_vectors = np.array(self.get_article_vectors(liked_articles))
+            like_centroid = list(np.average(like_vectors, axis=0))
+
+        if len(disliked_articles) > 0:
+            dislike_vectors = np.array(self.get_article_vectors(disliked_articles))
+            dislike_centroid = list(np.average(dislike_vectors, axis=0))
+
+        self.elastic_client.update(
+            index='users',
+            id=user_id,
+            body={
+                'doc': {
+                    'like_centroid': like_centroid,
+                    'dislike_centroid': dislike_centroid
                 }
             }
         )
@@ -117,6 +148,22 @@ class Recommender:
             users.append((user['_id'], user['_source']['name']))
 
         return users
+
+    def get_article_vectors(self, article_ids):
+        body = {
+            'query': {
+                'ids': {
+                    'values': article_ids
+                }
+            }
+        }
+        results = self.elastic_client.search(index='scrapy-2021-04', body=body)
+
+        article_vectors = []
+        for result in results['hits']['hits']:
+            article_vectors.append(result['_source']['vector'])
+
+        return article_vectors
 
     def get_reviewed_articles(self, user_id):
         result = self.elastic_client.search(

@@ -18,7 +18,8 @@ class Command(BaseCommand):
                 'name': name,
                 'liked_articles': [],
                 'disliked_articles': [],
-                'vector_representation': []
+                'like_centroid': [],
+                'dislike_centroid': []
             }
             result = self.elastic_client.index(index='users', id=i, body=user)
             print(f'Creating user {name} result: {result["result"]}')
