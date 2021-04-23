@@ -27,7 +27,7 @@ class Recommender:
 
     def recommend_articles(self, user_id, query):
         print(f'user {user_id} searched for {query}')
-        result = self.search(query, '')
+        result = self.search(query, 'or')
         articles = []
         for item in result:
             article = item['_source']
