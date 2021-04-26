@@ -18,26 +18,37 @@
        data-bs-parent="#article-wrapper">
     <div class="accordion-body">
 
-      {{ article.text }}
+      {{ article.text|slice:":1000" }}...
 
-      <form action="/" method="post">
-        {% csrf_token %}
-        <button type="submit" name="like_article" value="{{ article.id }}"
-                class="btn {% if article.id in liked_articles %}btn-primary{% endif %}">
-          <img alt="like" width="50" height="40"
-               src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png"/>
-        </button>
-      </form>
+      <div class="row">
+        <div class="col">
+          <p class="mt-3"><a target="_blank" href="{{ article.url }}">Read full article</a></p>
+        </div>
 
-      <form action="/" method="post">
-        {% csrf_token %}
-        <button type="submit" name="dislike_article" value="{{ article.id }}"
-                class="btn {% if article.id in disliked_articles %}btn-primary{% endif %}">
-          <img alt="like" width="50" height="40"
-               src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png">
-        </button>
-      </form>
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
 
+            <form action="/" method="post">
+              {% csrf_token %}
+              <button type="submit" name="like_article" value="{{ article.id }}"
+                      class="btn {% if article.id in liked_articles %}btn-success{% endif %}">
+                <img alt="like" width="40" height="40"
+                     src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-up-Like-Hand-Approve-512.png"/>
+              </button>
+            </form>
+
+            <form action="/" method="post">
+              {% csrf_token %}
+              <button type="submit" name="dislike_article" value="{{ article.id }}"
+                      class="btn {% if article.id in disliked_articles %}btn-danger{% endif %}">
+                <img alt="dislike" width="40" height="40"
+                     src="https://cdn1.iconfinder.com/data/icons/jumpicon-basic-ui-line-1/32/-_Thumb-Down-Dislike-Hand-512.png">
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
