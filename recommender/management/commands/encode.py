@@ -5,6 +5,8 @@ from gensim.models.doc2vec import Doc2Vec
 
 es = Elasticsearch(hosts=["localhost"])
 
+index_name = "scrapy-2021-04"
+
 class Command(BaseCommand):
     """
     To run the command: ./manage.py crawl
@@ -13,6 +15,16 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         """ Update scrapy index
         """
+        mapping = {
+            "properties": {
+                "vector": {
+                    "type": "dense_vector",
+                    "dims": 10
+                }
+            }
+        }
+        es.indices.put_mapping(mapping, index=index_name)
+
         model = Doc2Vec.load('./d2v.model')
         search_body = {
             "size": 10000,
@@ -20,7 +32,7 @@ class Command(BaseCommand):
                 "match_all": {}
             }
         }
-        res = es.search(index="scrapy-2021-04", body=search_body)
+        res = es.search(index=index_name, body=search_body)
         hits = res['hits']['hits']
 
         for doc in hits:
@@ -30,4 +42,4 @@ class Command(BaseCommand):
                 }
             }
 
-            es.update(index="scrapy-2021-04", id=doc['_id'], body=update_body)
+            es.update(index=index_name, id=doc['_id'], body=update_body)

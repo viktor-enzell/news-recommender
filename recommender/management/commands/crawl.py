@@ -4,10 +4,6 @@ import pathlib
 
 path = pathlib.Path(__file__).parent.absolute()
 
-start_urls = [
-    'https://omni.se/professor-gor-som-uppsala-det-ger-fin-boosteffekt/a/56Kxw6'
-]
-
 class Command(BaseCommand):
     """
     To run the command: ./manage.py crawl
