@@ -11,24 +11,36 @@ class Recommender:
     def __init__(self):
         self.elastic_client = Elasticsearch(hosts=["localhost"])
 
-    def search(self, query, query_type):
+    def search(self, query, query_type, user_id):
         body = {
-            "query": {
-                "match": {
-                    "text": {
-                        "query": query,
-                        "fuzziness": "AUTO",
-                        "operator": query_type
-                    }
+          "query": {
+            "script_score": {
+              "query" : {
+                "match" : {"text": query}
+              },
+              "script": {
+                "source": "cosineSimilarity(params.queryVector, doc['vector']) + 1.0",
+                "params": {
+                  "queryVector": self.get_user_vector(user_id)
                 }
+              }
             }
+          }
         }
         res = self.elastic_client.search(index="scrapy-2021-04", body=body, size=10)
+
+        print(self.get_user_vector(user_id))
+        print("\n")
+        for hit in res['hits']['hits']:
+            print(hit['_score'])
+            print(hit['_source']['title'])
+            print(hit['_source']['vector'])
+            print("\n")
         return res['hits']['hits']
 
     def recommend_articles(self, user_id, query):
         print(f'user {user_id} searched for {query}')
-        result = self.search(query, 'or')
+        result = self.search(query, 'or', user_id)
         articles = []
         for item in result:
             article = item['_source']
@@ -178,3 +190,29 @@ class Recommender:
         )
         source = result['hits']['hits'][0]['_source']
         return source['liked_articles'], source['disliked_articles']
+
+    def get_user_vector(self, user_id):
+        result = self.elastic_client.search(
+            index='users',
+            body={
+                'query': {
+                    'match': {
+                        '_id': user_id
+                    }
+                }
+            }
+        )
+        source = result['hits']['hits'][0]['_source']
+
+        if (len(source['liked_articles'])==0):
+            like_centroid = np.random.random_sample(10) # ??
+        else:
+            like_centroid = source['like_centroid']
+        if (len(source['disliked_articles'])==0):
+            dislike_centroid = np.random.random_sample(10) # ??
+        else:
+            dislike_centroid = source['dislike_centroid']
+
+
+        return like_centroid #np.subtract(like_centroid,dislike_centroid)
+
