@@ -9,7 +9,7 @@ index_name = "scrapy-2021-04"
 
 class Command(BaseCommand):
     """
-    To run the command: ./manage.py crawl
+    To run the command: ./manage.py encode
     """
 
     def handle(self, *args, **options):
@@ -19,7 +19,7 @@ class Command(BaseCommand):
             "properties": {
                 "vector": {
                     "type": "dense_vector",
-                    "dims": 10
+                    "dims": 100
                 }
             }
         }
