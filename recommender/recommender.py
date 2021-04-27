@@ -205,11 +205,11 @@ class Recommender:
         source = result['hits']['hits'][0]['_source']
 
         if (len(source['liked_articles'])==0):
-            like_centroid = np.random.random_sample(10) # ??
+            like_centroid = np.random.random_sample(100) # ??
         else:
             like_centroid = source['like_centroid']
         if (len(source['disliked_articles'])==0):
-            dislike_centroid = np.random.random_sample(10) # ??
+            dislike_centroid = np.random.random_sample(100) # ??
         else:
             dislike_centroid = source['dislike_centroid']
 
