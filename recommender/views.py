@@ -20,12 +20,13 @@ def index(request):
             # If user is already selected, return search form
             user_form = UserForm(initial_user=user, available_users=available_users)
 
-            if request.GET.get('search_bar', False):
+            if request.GET.get('query', False):
                 # If user has entered a search query, return corresponding articles
                 search_form = SearchForm(request.GET)
                 if search_form.is_valid():
-                    query = search_form.cleaned_data.get('search_bar', False)
+                    query = search_form.cleaned_data.get('query', False)
                     if query:
+                        request.session['query'] = query
                         articles = recommender.recommend_articles(user, query)
                         liked_articles, disliked_articles = recommender.get_reviewed_articles(user)
                         context = {
@@ -61,6 +62,7 @@ def index(request):
                 data = user_form.cleaned_data
                 if data.get('user'):
                     request.session['user'] = data.get('user')
+            return HttpResponseRedirect('/')
 
         user = request.session['user']
         if request.POST.get('like_article', False):
@@ -73,5 +75,5 @@ def index(request):
             article = request.POST.get('dislike_article')
             recommender.dislike_article(user, article)
 
-        # Redirect back to / so that a GET request is sent and the articles are updated
-        return HttpResponseRedirect('/')
+        query = request.session['query']
+        return HttpResponseRedirect(f'/?query={query}') if query else HttpResponseRedirect('/')

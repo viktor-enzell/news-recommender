@@ -20,7 +20,7 @@ class UserForm(forms.Form):
 
 
 class SearchForm(forms.Form):
-    search_bar = forms.CharField(
+    query = forms.CharField(
         widget=forms.TextInput(attrs={
             'type': 'text',
             'class': 'form-control',

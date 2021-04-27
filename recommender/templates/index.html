@@ -20,8 +20,8 @@
       {% csrf_token %}
       {{ search_form.non_field_errors }}
       <div class="mb-3">
-        {{ search_form.search_bar.errors }}
-        {{ search_form.search_bar }}
+        {{ search_form.query.errors }}
+        {{ search_form.query }}
       </div>
     </form>
 
