@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         elastic_client = Elasticsearch(hosts=["localhost"])
         body = {
-            "size": 5000,
+            "size": 10000,
             "query": {
                 "match_all": {}
             }
@@ -24,7 +24,7 @@ class Command(BaseCommand):
         return
 
     def train_model(self, tagged_data):
-        model = Doc2Vec(tagged_data, vector_size=10, window=2, min_count=1, workers=4)
+        model = Doc2Vec(tagged_data, vector_size=100, window=5, min_count=1, workers=8, epochs=100)
 
         model.save("d2v.model")
         print("Model Saved")
