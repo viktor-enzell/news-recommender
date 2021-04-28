@@ -13,8 +13,8 @@ class Recommender:
 
     def search(self, query, query_type, user_id):
 
-        like_article, dislike_article = self.get_reviewed_articles(user_id)
-        if (len(like_article) == 0 and len(dislike_article) == 0):
+        like_centroid, dislike_centroid = self.get_centroids(user_id)
+        if (len(like_centroid) == 0 and len(dislike_centroid) == 0):
             body = {
               "query": {
                 "match": {
@@ -196,7 +196,7 @@ class Recommender:
         source = result['hits']['hits'][0]['_source']
         return source['liked_articles'], source['disliked_articles']
 
-    def get_user_vector(self, user_id):
+    def get_centroids(self, user_id):
         result = self.elastic_client.search(
             index='users',
             body={
@@ -208,15 +208,16 @@ class Recommender:
             }
         )
         source = result['hits']['hits'][0]['_source']
+        return source['like_centroid'], source['dislike_centroid']
 
-        if (len(source['liked_articles'])==0):
+
+    def get_user_vector(self, user_id):
+        like_centroid, dislike_centroid = self.get_centroids(user_id)
+
+        if (len(like_centroid)==0):
             like_centroid = np.zeros(100)
-        else:
-            like_centroid = source['like_centroid']
-        if (len(source['disliked_articles'])==0):
+        if (len(dislike_centroid)==0):
             dislike_centroid = np.zeros(100)
-        else:
-            dislike_centroid = source['dislike_centroid']
 
-        return np.subtract([x * 0.8 for x in like_centroid],[x * 0.2 for x in dislike_centroid])
+        return np.subtract([x * 0.75 for x in like_centroid],[x * 0.15 for x in dislike_centroid])
 
