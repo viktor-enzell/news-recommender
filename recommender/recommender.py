@@ -1,6 +1,7 @@
 from elasticsearch import Elasticsearch
 import json
 import numpy as np
+from gensim.models.doc2vec import Doc2Vec
 
 
 class Recommender:
@@ -33,7 +34,7 @@ class Recommender:
                   "script": {
                     "source": "cosineSimilarity(params.queryVector, doc['vector']) + 1.000001",
                     "params": {
-                      "queryVector": self.get_user_vector(user_id)
+                      "queryVector": self.rocchio_algorithm(user_id, query)
                     }
                   }
                 }
@@ -211,7 +212,7 @@ class Recommender:
         return source['like_centroid'], source['dislike_centroid']
 
 
-    def get_user_vector(self, user_id):
+    def rocchio_algorithm(self, user_id, query):
         like_centroid, dislike_centroid = self.get_centroids(user_id)
 
         if (len(like_centroid)==0):
@@ -219,5 +220,8 @@ class Recommender:
         if (len(dislike_centroid)==0):
             dislike_centroid = np.zeros(100)
 
-        return np.subtract([x * 0.75 for x in like_centroid],[x * 0.15 for x in dislike_centroid])
+        model = Doc2Vec.load('./d2v.model')
+        query_vector = model.infer_vector(query.split())
+
+        return np.add([x * 1 for x in query_vector],np.subtract([x * 0.75 for x in like_centroid],[x * 0.15 for x in dislike_centroid]))
 
