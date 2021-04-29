@@ -20,13 +20,15 @@ class Spider(CrawlSpider):
     )
 
     def parse_news(self, response):
-        for article in response.xpath('//article'):
-            text = []
-            for p in article.xpath('//p/text()'):
-                text.append(p.get())
+        article = response.xpath('//article[contains(@class, "ArticleWrapper")]').extract_first(default='not_found')
+        if article != 'not_found':
+            bold = response.xpath('//article//p/b/text()').get();
+            text = [bold]
+            for p in response.xpath('//article//p/text()'):
+                t = p.get()
+                text.append(t)
             yield {
                 'url': response.url,
-                'title': article.xpath('//h1/text()').get(),
+                'title': response.xpath('//article//h1/text()').get(),
                 'text': ' '.join(text),
             }
-            break
