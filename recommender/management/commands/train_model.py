@@ -24,7 +24,7 @@ class Command(BaseCommand):
         return
 
     def train_model(self, tagged_data):
-        model = Doc2Vec(tagged_data, vector_size=100, window=5, min_count=1, workers=8, epochs=100)
+        model = Doc2Vec(tagged_data, alpha=0.01, min_alpha=0.0001, vector_size=100, window=5, min_count=2, max_vocab_size=None, workers=8, epochs=100)
 
         model.save("d2v.model")
         print("Model Saved")
