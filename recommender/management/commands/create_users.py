@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from elasticsearch import Elasticsearch
+import numpy as np
 
 
 class Command(BaseCommand):
@@ -13,13 +14,24 @@ class Command(BaseCommand):
         self.user_names = ['Sanna', 'Tim', 'Adam', 'Viktor']
 
     def handle(self, *args, **options):
+        # Retrieve all article vectors to initialize like centroid to the average of all article vectors
+        results = self.elastic_client.search(index='scrapy-2021-04', size=10000)
+        all_article_vectors = []
+        for result in results['hits']['hits']:
+            all_article_vectors.append(result['_source']['vector'])
+
+        # Set like centroid to the centroid of all articles
+        like_centroid = list(np.average(all_article_vectors, axis=0))
+        # Set dislike centroid to zero vector
+        dislike_centroid = np.zeros(100)
+
         for i, name in enumerate(self.user_names):
             user = {
                 'name': name,
                 'liked_articles': [],
                 'disliked_articles': [],
-                'like_centroid': [],
-                'dislike_centroid': []
+                'like_centroid': like_centroid,
+                'dislike_centroid': dislike_centroid
             }
             result = self.elastic_client.index(index='users', id=i, body=user)
             print(f'Creating user {name} result: {result["result"]}')
