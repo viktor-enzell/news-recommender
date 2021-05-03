@@ -13,9 +13,9 @@ class Recommender:
         self.elastic_client = Elasticsearch(hosts=["localhost"])
 
     def search(self, query, query_type, user_id):
+        liked_article_ids, disliked_article_ids = self.get_reviewed_articles(user_id)
 
-        like_centroid, dislike_centroid = self.get_centroids(user_id)
-        if (len(like_centroid) == 0 and len(dislike_centroid) == 0):
+        if len(liked_article_ids) == 0 and len(disliked_article_ids) == 0:
             body = {
               "query": {
                 "match": {
@@ -135,28 +135,33 @@ class Recommender:
         self.update_centroids(user_id)
 
     def update_centroids(self, user_id):
-        liked_articles, disliked_articles = self.get_reviewed_articles(user_id)
-        like_centroid = []
-        dislike_centroid = []
+        liked_article_ids, disliked_article_ids = self.get_reviewed_articles(user_id)
 
-        if len(liked_articles) > 0:
-            like_vectors = np.array(self.get_article_vectors(liked_articles))
+        if len(liked_article_ids) > 0:
+            like_vectors = np.array(self.get_article_vectors(liked_article_ids))
             like_centroid = list(np.average(like_vectors, axis=0))
-
-        if len(disliked_articles) > 0:
-            dislike_vectors = np.array(self.get_article_vectors(disliked_articles))
-            dislike_centroid = list(np.average(dislike_vectors, axis=0))
-
-        self.elastic_client.update(
-            index='users',
-            id=user_id,
-            body={
-                'doc': {
-                    'like_centroid': like_centroid,
-                    'dislike_centroid': dislike_centroid
+            self.elastic_client.update(
+                index='users',
+                id=user_id,
+                body={
+                    'doc': {
+                        'like_centroid': like_centroid,
+                    }
                 }
-            }
-        )
+            )
+
+        if len(disliked_article_ids) > 0:
+            dislike_vectors = np.array(self.get_article_vectors(disliked_article_ids))
+            dislike_centroid = list(np.average(dislike_vectors, axis=0))
+            self.elastic_client.update(
+                index='users',
+                id=user_id,
+                body={
+                    'doc': {
+                        'dislike_centroid': dislike_centroid
+                    }
+                }
+            )
 
     def get_users(self):
         result = self.elastic_client.search(index='users')
@@ -211,17 +216,16 @@ class Recommender:
         source = result['hits']['hits'][0]['_source']
         return source['like_centroid'], source['dislike_centroid']
 
-
     def rocchio_algorithm(self, user_id, query):
         like_centroid, dislike_centroid = self.get_centroids(user_id)
-
-        if (len(like_centroid)==0):
-            like_centroid = np.zeros(100)
-        if (len(dislike_centroid)==0):
-            dislike_centroid = np.zeros(100)
 
         model = Doc2Vec.load('./d2v.model')
         query_vector = model.infer_vector(query.split())
 
-        return np.add([x * 1 for x in query_vector],np.subtract([x * 0.75 for x in like_centroid],[x * 0.15 for x in dislike_centroid]))
-
+        return np.add(
+            [x * 1 for x in query_vector],
+            np.subtract(
+                [x * 0.75 for x in like_centroid],
+                [x * 0.15 for x in dislike_centroid]
+            )
+        )
