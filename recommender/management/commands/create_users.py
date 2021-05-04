@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from elasticsearch import Elasticsearch
 import numpy as np
+from modelsettings import *
 
 
 class Command(BaseCommand):
@@ -15,7 +16,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         # Retrieve all article vectors to initialize like centroid to the average of all article vectors
-        results = self.elastic_client.search(index='scrapy-2021-04', size=10000)
+        results = self.elastic_client.search(index=INDEX, size=10000)
         all_article_vectors = []
         for result in results['hits']['hits']:
             all_article_vectors.append(result['_source']['vector'])
@@ -23,7 +24,7 @@ class Command(BaseCommand):
         # Set like centroid to the centroid of all articles
         like_centroid = list(np.average(all_article_vectors, axis=0))
         # Set dislike centroid to zero vector
-        dislike_centroid = np.zeros(100)
+        dislike_centroid = np.zeros(DIMS)
 
         for i, name in enumerate(self.user_names):
             user = {

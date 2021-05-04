@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 import json
 import numpy as np
 from gensim.models.doc2vec import Doc2Vec
-
+from modelsettings import *
 
 class Recommender:
     """
@@ -32,7 +32,7 @@ class Recommender:
                     "match" : {"text": query}
                   },
                   "script": {
-                    "source": "cosineSimilarity(params.queryVector, doc['vector']) + 1.000001",
+                    "source": "cosineSimilarity(params.queryVector, 'vector') + 1.000001",
                     "params": {
                       "queryVector": self.rocchio_algorithm(user_id, query)
                     }
@@ -40,7 +40,7 @@ class Recommender:
                 }
               }
             }
-        res = self.elastic_client.search(index="scrapy-2021-04", body=body, size=10)
+        res = self.elastic_client.search(index=INDEX, body=body, size=10)
 
         return res['hits']['hits']
 
@@ -180,7 +180,7 @@ class Recommender:
                 }
             }
         }
-        results = self.elastic_client.search(index='scrapy-2021-04', body=body)
+        results = self.elastic_client.search(index=INDEX, body=body)
 
         article_vectors = []
         for result in results['hits']['hits']:

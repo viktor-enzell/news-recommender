@@ -9,3 +9,4 @@ gensim==4.0.1
 python-Levenshtein==0.12.2
 numpy==1.20.2
 sklearn
+jsonstream
