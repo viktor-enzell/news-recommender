@@ -8,12 +8,12 @@ When interacting with the system, the user chooses from a list of predefined use
 
 ## Getting Started
 The recommended Python version for this project is Python 3.8 or later.
-It is recommended to start a new Virtualenv before installing the project requirements.
+It is generally recommended to start a new Virtualenv before installing the project requirements.
 
 For testing the system, you can load a set of articles from file and use our pretrained Doc2Vec model.
 To do this, just follow the instructions below. 
 If you want to crawl new articles and train the model from scratch, 
-then skip the step below where you load articles from file and instead follow the **advanced instructions**.
+then skip the step where you populate Elasticsearch with news articles and instead follow the optional instructions below.
 
 Install the project requirements.
 ```
@@ -43,7 +43,7 @@ python manage.py runserver
 
 You should now be able to interact with the system at http://127.0.0.1:8000/.
 
-### Optional: crawl new articles and train Doc2Vec model from scratch
+### Optional: Crawl new news articles and train a Doc2Vec model from scratch
 Crawl BBC for news articles. 
 This can take a while, depending on the depth you set in **scrapysettings.py**.
 ```
