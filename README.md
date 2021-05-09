@@ -1,5 +1,5 @@
 # News Recommender
-Group project in *DD2476 Search Engines and Information Retrieval Systems* at *KTH* in 2021.
+Group project in **DD2476 Search Engines and Information Retrieval Systems** at **KTH** in 2021.
 
 A personalized news recommendation system built in Python with [Django](https://www.djangoproject.com/), [Elasticsearch](https://www.elastic.co/), [Scrapy](https://scrapy.org/) and [Doc2Vec](https://radimrehurek.com/gensim/models/doc2vec.html). 
 News articles are scraped from [bbc.com/news](https://www.bbc.com/news) and stored in Elasticsearch. 
