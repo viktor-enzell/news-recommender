@@ -4,7 +4,7 @@ Group project in **DD2476 Search Engines and Information Retrieval Systems** at 
 A personalized news recommendation system built in Python with [Django](https://www.djangoproject.com/), [Elasticsearch](https://www.elastic.co/), [Scrapy](https://scrapy.org/) and [Doc2Vec](https://radimrehurek.com/gensim/models/doc2vec.html). 
 News articles are scraped from [bbc.com/news](https://www.bbc.com/news) and stored in Elasticsearch. 
 A Doc2Vec model is then trained on these articles and the articles are updated to include a vector representation produced by the model. 
-When interacting with the system, the user chooses from a list of predefined user profiles and based on articles that the user likes or dislikes, the user profile is adapted to represent the users preferences.
+When interacting with the system, the user chooses from a list of predefined user profiles and based on articles that the user likes or dislikes, the user profile is adapted to represent the user's preferences.
 
 ## Getting Started
 The recommended Python version for this project is Python 3.8 or later.
@@ -43,9 +43,7 @@ python manage.py runserver
 
 You should now be able to interact with the system at http://127.0.0.1:8000/.
 
----
-
-### Advanced
+### Optional: crawl new articles and train Doc2Vec model from scratch
 Crawl BBC for news articles. 
 This can take a while, depending on the depth you set in **scrapysettings.py**.
 ```
