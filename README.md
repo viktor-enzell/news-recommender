@@ -33,13 +33,10 @@ elasticdump --input=./es/articles-mapping.json --output=http://localhost:9200/ar
 elasticdump --input=./es/articles.json --output=http://localhost:9200/articles --type=data
 ```
 
-Initialize user profiles.
+Initialize user profiles, run Django migrations and start the Django server.
 ```
 python manage.py create_users
-```
-
-Start the Django server.
-```
+python manage.py migrate
 python manage.py runserver
 ```
 
