@@ -219,7 +219,7 @@ class Recommender:
     def rocchio_algorithm(self, user_id, query):
         like_centroid, dislike_centroid = self.get_centroids(user_id)
 
-        model = Doc2Vec.load('./d2v.model')
+        model = Doc2Vec.load(MODEL)
         query_vector = model.infer_vector(query.split())
 
         return np.add(

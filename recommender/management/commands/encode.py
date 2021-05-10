@@ -1,5 +1,4 @@
 from elasticsearch import Elasticsearch
-import json
 from django.core.management.base import BaseCommand
 from gensim.models.doc2vec import Doc2Vec
 from gensim.parsing.preprocessing import remove_stopwords
