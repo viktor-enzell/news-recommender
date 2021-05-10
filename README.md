@@ -15,6 +15,8 @@ To do this, just follow the instructions below.
 If you want to crawl new articles and train the model from scratch, 
 then skip the step where you populate Elasticsearch with news articles and instead follow the optional instructions below.
 
+Follow the instructions on [elastic.co](https://www.elastic.co/guide/en/elasticsearch/reference/current/install-elasticsearch.html) to install Elasticsearch.
+
 Install the project requirements.
 ```
 pip install -r requirements.txt
