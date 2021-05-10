@@ -1,0 +1,537 @@
+like: new discoveries/scientific news
+dislike: nothing
+
+testquery: scientists
+
+(what have scientists been up to)
+
+scoring:
+	1: new scientific news/studies
+	2: novel discovery
+
+
+test 1:
+1	1. World's ugliest orchid tops list of new discoveries
+0	2. Real and imminent extinction risk to whales
+0	3. Murder hornet: First nest found in US eradicated with vacuum hose
+1	4. Open University scientists testing Moon dust for water
+1	5. Pregnant Egyptian mummy revealed by scientists
+0	6. Coronavirus: US volunteers test first vaccine
+0	7. India coronavirus: More than half of Mumbai slum-dwellers had Covid-19
+1	8. Why Guyana's rainforests are a scientists dream
+0	9. Coronavirus: Has the pandemic really peaked in India?
+2	10. Honeybee venom kills some breast cancer cells
+prec: 5
+score: 6
+
+
+query: mars
+L	1. Mars: Vast amount of water may be locked up on planet
+	2. UAE Hope mission returns first image of Mars
+	3. NAsa Perseverance rover: Bringing Mars back to Earth
+	4. Perseverance rover: Nasa robot heading for a bulls-eye landing
+	5. Video shows Perseverance rover's dramatic Mars landing
+	6. Nasa successfully flies small helicopter on Mars
+	7. Nasa's Perseverance Mars rover listens to its rock-zipping laser
+	8. Ingenuity: Nasa's Mars helicopter makes it three from three
+	9. CaSSIS mission: The camera capturing Mars' crater and canyons
+	10. Nasa Mars rover: The clanking sound of Perseverance's wheels
+
+test 2:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+1	3. Climate change: Unprecedented ice loss as Greenland breaks record
+1	4. Climate change: Blue skies pushed Greenland into the red
+0	5. What is climate change? A really simple guide
+2	6. Deforested parts on Amazon emitting more CO2 than they abosrb
+0	7. Nasa's Perseverance rover is bearing down on Mars
+2	8. Atlantic discovery: 12 new species hiding in the deep
+0	9. Climate change: UK government to commit to 2050 target
+1	10. Climate change: Covid pandemic has little impact on rise in CO2
+prec: 7
+score: 9
+
+
+query: ai
+L	1. AI conquers challenge of 1980s platform games
+	2. Tracking the toxic air that's killing millions
+	3. Hundreds of sewage leaks detected thanks to AI
+	4. Could a computer ever create better art than a human?
+	5. Puppy training a robot dog points to the future
+	6. UH must learn from 5G Huawei U-turn supplier squeeze
+	7. I was terrible at crosswords so I built an AI to do them
+	8. Wearable to spot Alzheimer's being developed
+	9. Ridley Scott inspires Network Rail's cave-exploring drone
+	10. Data expoerts are becoming football's best signings
+
+test 3:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. AI conquers challenge of 1980's platform games
+1	3. Climate change: UN panel signals red alert on Blue Planet
+0	4. Nasa's Perseverance rover is bearing down on Mars
+1	5. Climate change: Unprecedented ice loss as Greenland breaks record
+1	6. Climate change: Covid pandemic has little impact on rise in CO2
+1	7. Australia fires were far worse than any prediction
+1	8. Superconductors: Material raises hope of energy revolution
+0	9. What is climate change? A really simple guide
+0	10. Climate change: UK government to commit to 2050 target
+prec: 7
+score: 7
+
+
+query: coronavirus
+	1. Get ready for the holy grail of computer graphics
+	2. Coronavirus: Why are we catching more diseases from animals?
+L	3. Coronavirus: Will summer make a difference?
+	4. Coronavirus: How can we make post-pandemic cities smarter?
+	5. Amazon under threat: Fires, loggers and now virus
+	6. Wuhan marks its anniversary with triumph and denial
+	7. New covid strain: How worried should we be?
+	8. India coronavirus: More than half of Mumbai slum-dwellers had Covid-19
+	9. PlayStation 5: Sony gives first look at the PS5 console and games
+	10. Working from home: The rise of the DIY office
+
+test 4:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. AI conquers challenge of 1980's platform games
+1	3. Climate change: UN panel signals red alert on Blue Planet
+1	4. Australia fires were far worse than any prediction
+1	5. Climate change: Covid pandemic has little impact on rise in CO2
+1	6. Climate change: Unprecedented ice loss as Greenland breaks record
+0	7. What is climate change? A really simple guide
+0	8. Nasa's Perseverance rover is bearing down on Mars
+1	9. Climate change: Blue skies pushed Greenland into the red
+1	10. Global map of bees created in conservation first
+prec: 8
+score: 8
+
+
+query: brain
+	1. The real reason humans are the dominant species
+	2. Chernobyl: The end of a three-decade experiment
+	3. Could a computer ever create better art than a human?
+	4. Mount Vesuvius eruption: Extreme heat turned man's brain to glass
+	5. Covid-19: Five ways to stay positive through lockdown
+	6. Encephalitis: I couldn't remember my boyfriend
+L	7. Rocking like a baby promotes better sleep in adults
+	8. How many people can I have a drink with? And other questions
+	9. Parosmia: Since I had Covid, food makes me want to vomit
+	10. Avoiding the pitfalls of texting and walking
+
+test 5:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+1	3. AI conquers challenge of 1980's platform games
+2	4. Rocking like a baby promotes better sleep in adults
+1	5. Climate change: Unprecedented ice loss as Greenland breaks record
+1	6. Climate change: Covid pandemic has little impact on rise in CO2
+1	7. Climate change: Blue skies pushed Greenland into the red
+1	8. Australia fires were far worse than any prediction
+0	9. What is climate change? A really simple guide
+0	10. Nasa's Perseverance rover is bearing down on Mars
+prec: 8
+score: 9
+
+
+query: drone
+	1. What is Elon Musk's Starship?
+	2. The super-tough drones and robots going where we can't
+L	3. Grandmother killer whales boost survival of calves
+	4. Coronavirus: How can we make post-pandemic cities smarter
+	5. How bees and drones team up to find landmines
+	6. Ridley Scott inspires Network Rail's cave exploring drone
+	7. Mars Ingenuity helicopter mission extended by Nasa
+	8. Nasa successfully flies small helicopter on Mars
+	9. Ingenuity: Nasa's Mars helicopter makes it three from three
+	10. Edinburgh University researchers use drones to map retreating Andes glaciers
+
+test 6:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Rocking like a baby promotes better sleep in adults
+1	4. AI conquers challenge of 1980's platform games
+2	5. Traffic noise impairs songbirds' abilities
+2	6. Rising carbon dioxide levels impair coral growth
+0	7. What is climate change? A really simple guide
+1	8. Climate change: Covid pandemic has little impact on rise in CO2
+1	9. Climate change boosted Australia bushfire risk by at least 30%
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 9
+score: 12
+
+
+query: cars
+	1. Traffic noise impairs songbirds' abilities
+	2. Protecting fragile ecosystems from lithium mining
+L	3. Cambridge research into driverless cars finds improved traffic flow
+	4. Climate change: UK government to commit to 2050 target
+	5. Ozone layer: Concern grows over threat from replacement chemicals
+	6. The fould-smelling fuel that could power big ships
+	7. Coronavirus: How can we make post pandemic cities smarter
+	8. Ultrasound breakthrough can spot cancer earlier
+	9. The best science long reads of 2019
+	10. Climate change: Have countries kept their promises?
+
+test 7:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Rocking like a baby promotes better sleep in adults
+1	4. AI conquers challenge of 1980's platform games
+2	5. Traffic noise impairs songbirds' abilities
+2	6. Rising carbon dioxide levels impair coral growth
+1	7. Climate change: Covid pandemic has little impact on rise in CO2
+1	8. Climate change boosted Australia bushfire risk by at least 30%
+1	9. Climate change: Unprecedented ice loss as Greenland breaks record
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 10
+score: 13
+
+
+query: traffic
+	1. Cambridge research into driverless cars finds improved traffic flow
+	2. Traffic noise impairs songbirds' abilities
+L	3. Ocean noise: Study to measure the oceans' year of quiet
+	4. Coronavirus: How can we make post-pandemic cities smarter
+	5. Ultrasound breakthrough can spot cancer earlier
+	6. Tracking the toxic air that's killing millions
+	7. Avoiding the pitfalls of texting and walking
+	8. Robots on the road - how close is our driverless future?
+	9. City pollution still dangerously high despite lockdown
+	10. Wuhan marks its anniversary with triumph and denial
+
+test 8:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+1	3. Ocean noise: Study to measure the oceans' year of quiet
+2	4. Rocking like a baby promotes better sleep in adults
+2	5. Traffic noise impairs songbirds' abilities
+1	6. AI conquers challenge of 1980's platform games
+1	7. Climate change: Covid pandemic has little impact on rise in CO2
+2	8. Rising carbon dioxide levels impair coral growth
+1	9. Climate change: Unprecedented ice loss as Greenland breaks record
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 10
+score: 13
+
+
+query: europe
+	1. Climate change: UN panel signals red alert on Blue Planet
+	2. Climate change: Blue skies pushed Greenland into the red
+	3. Global map of bees created in conservation first
+L	4. Climate change: How hot cities could be in 2050
+	5. Chernobyl: The end of a three-decade experiment
+	6. Climate change: UK governement to commit to 2050 target
+	7. Ozone layer: concern grows over threat from replacement chemicals
+	8. Climate change food calculator: What's your diet's carbon footprint
+	9. Wales' natural resourcces used at unsustainable rate
+	10. Climate change: Electrical industry's dirty secret boosts warming
+
+test 9:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+1	3. Ocean noise: Study to measure the oceans' year of quiet
+2	4. Rocking like a baby promotes better sleep in adults
+2	5. Traffic noise impairs songbirds' abilities
+2	6. Climate change: How hot cities could be in 2050
+1	7. Climate change: Covid pandemic has little impact on rise in CO2
+1	8. AI conquers challenge of 1980's platform games
+1	9. Climate change: Unprecedented ice loss as Greenland breaks record
+2	10. Rising carbon dioxide levels impair coral growth
+prec: 10
+score: 14
+
+
+query: vaccine
+	1. New Covid strain: How worried should we be?
+	2. Coronavirus: Australian scientists begin tests of potential vaccines
+L	3. Covid jab: One dose in care homes gives substantial protection
+	4. Coronavirus: Is the world winning the pandemic fight?
+	5. New coronavirus variant: What do we know?
+	6. The science of hugs: I never knew how much I needed them
+	7. Flu virus with pandemic potential found in China
+	8. Covid Brazil variant may spread more easily
+	9. Covid: Encouraging antibody boost after Pfizer and AZ vaccines
+	10. Coronavirus doctor's diary: Will Covid be with us forever, like flu?
+
+test 10:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+1	3. Ocean noise: Study to measure the oceans' year of quiet
+2	4. Rocking like a baby promotes better sleep in adults
+2	5. Traffic noise impairs songbirds' abilities
+1	7. Climate change: Covid pandemic has little impact on rise in CO2
+2	6. Climate change: How hot cities could be in 2050
+1	9. Climate change: Unprecedented ice loss as Greenland breaks record
+1	8. AI conquers challenge of 1980's platform games
+2	10. Rising carbon dioxide levels impair coral growth
+prec: 10
+score: 14
+
+query: archaeology
+	1. Mummy returns: Voice of 3000-year-old Egyptian priest brought to life
+L	2. Bronze Age treasure found in Swedish forest by mapmaker
+	3. UK global university ranking Brexit warning
+	4. Ralph Fiennes and Carey Mulligan remake history in Netflix film The Dig
+	5. Fingerprint from 5000 years ago found in Orkney
+	6. The photographers capturing buildings and biscuits in 3D
+	7. Significant Ile of Man Viking brooches declared treasure
+	8. Beginner's luck for 10-year-old metal detectorist
+	9. Ilse of Man Viking jewellery found by metal detectorist
+	10. The women who love mummies
+
+test 11:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Rocking like a baby promotes better sleep in adults
+1	4. Ocean noise: Study to measure the oceans' year of quiet
+2	5. Traffic noise impairs songbirds' abilities
+1	6. AI conquers challenge of 1980's platform games
+1	7. Climate change: Covid pandemic has little impact on rise in CO2
+2	8. Climate change: How hot cities could be in 2050
+1	9. Climate change: Unprecedented ice loss as Greenland breaks record
+1	10. Climate change boosted Australia bushfire risk by at least 30%
+prec: 10
+score: 13
+
+
+query: university
+	1. Climate change: UN panel signals red alert on Blue Planet
+	2. Rocking like a baby promotes better sleep in adults
+	3. Ocean noise: Study to measure the oceans' year of quiet
+L	4. Trafic noise impairs songbirds' abilities
+	5. Climate change: How hot cities could be in 2050
+	6. Grandmother killer whales boost survival of calves
+	7. Coronavirus: Will summer make a difference?
+	8. How fish and shrimps could be recruited as underwater spies
+	9. Cambridge research into driverless cars finds improved traffic flow
+	10. Climate change: Unprecedented ice loss as Greenland breaks record
+
+test 12:
+1	1. Mars: Vast amount of water may be locked up on planet
+2	2. Traffic noise impairs songbirds' abilities
+1	3. Climate change: UN panel signals red alert on Blue Planet
+1	4. Ocean noise: Study to measure the oceans' year of quiet
+2	5. Rocking like a baby promotes better sleep in adults
+1	6. Climate change: Covid pandemic has little impact on rise in CO2
+2	7. Climate change: How hot cities could be in 2050
+1	8. Climate change: Unprecedented ice loss as Greenland breaks record
+1	9. AI conquers challenge of 1980's platform games
+2	10. Rising carbon dioxide levels impair coral growth
+prec: 10
+score: 14
+
+
+query: africa
+	1. Global map of bees created in conservation first
+L	2. Climate change: Bleak outlook as carbon emissions gap grows
+	3. Climate change: Temperature analysis shows UN goals within reach
+	4. Tracking the toxic air that's killing millions
+	5. Coronavirus: How bad will winter really be?
+	6. Food giants respond to worries over packaging
+	7. Coronavirus: Is the world winning the pandemic fight?
+	8. New coronavirus variant: What do we know?
+	9. Coronavirus: Double mutant Covid variant found in India
+	10. Double muitant: What are the risks of India's new Covid-19 variant
+
+test 13:
+1	1. Mars: Vast amount of water may be locked up on planet
+2	2. Traffic noise impairs songbirds' abilities
+1	3. Climate change: UN panel signals red alert on Blue Planet
+2	4. Rocking like a baby promotes better sleep in adults
+1	5. Ocean noise: Study to measure the oceans' year of quiet
+1	6. Climate change: Covid pandemic has little impact on rise in CO2
+2	7. Climate change: How hot cities could be in 2050
+1	8. Climate change: Unprecedented ice loss as Greenland breaks record
+1	9. AI conquers challenge of 1980's platform games
+1	10. Climate change boosted Australia bushfire risk by at least 30%
+prec: 10
+score: 13
+
+
+query: chemistry
+	1. Atlantic discovery: 12 new species hiding in the deep
+	2. Climate change: UK government to commit to 2050 target
+	3. Nasa's Perseverance rover is bearing down on Mars
+L	4. Golden tongue helps ensure maple syrup quality
+	5. Climate change: Electrical industry's dirty secret boosts warming
+	6. Companies back moratorium on deep sea mining
+	7. City pollution still dangerously high despite lockdown
+	8. Toxic air puts six million at risk of lung damage
+	9. Musk: Cheaper Tesla ready in about three years
+	10. One in three children exposed to lead globally
+
+test 14:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Traffic noise impairs songbirds' abilities
+2	4. Rocking like a baby promotes better sleep in adults
+2	5. Climate change: How hot cities could be in 2050
+2	6. Golden tongue helps ensure maple syrup quality
+1	7. AI conquers challenge of 1980's platform games
+2	8. Rising carbon dioxide levels impair coral growth
+1	9. Climate change boosted Australia bushfire risk by at least 30%
+1	10. Climate change: Covid pandemic has little impact on rise in CO2
+prec: 10
+score: 15
+
+
+query: physics
+	1. Atlantic discovery: 12 new species hiding in the deep
+L	2. Machine finds tantalising hints of new physics
+	3. Muons: Strong evidence found for a new force of nature
+	4. Ultrasound breakthrough can spot cancer earlier
+	5. Minecraft players to be helped by AI assistant
+	6. Skylab: The myth of the mutiny in space
+	7. Shyamala Gopalan: The woman who inspired Kamala Harris
+	8. So you want a career in building computer games?
+	9. How the US students get a university degree for free in Germany
+	10. CEO Secrets: The graduates launch start-ups in lockdown
+
+test 15:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Rocking like a baby promotes better sleep in adults
+2	4. Climate change: How hot cities could be in 2050
+2	5. Golden tongue helps ensure maple syrup quality
+2	6. Rising carbon dioxide levels impair coral growth
+1	7. Climate change boosted Australia bushfire risk by at least 30%
+1	8. Climate change: Unprecedented ice loss as Greenland breaks record
+1	9. AI conquers challenge of 1980's platform games
+2	10. Superconductors: Material raises hope of energy revolution
+prec: 10
+score: 15
+
+
+query: discovery
+	1. Machine finds tantalising hints fo new physics
+	2. Superconductors: Material raises hope of energy revolution
+L	3. Muons: Strong evidence found for new force of nature
+	4. Ozone hole vigilance still required
+	5. Atlantic discovery: 12 new species hiding in the deep
+	6. The real reason humans are the dominant species
+	7. Toothless dinosaur with just two fingers discovered
+	8. Climate change: A small green rock's warning about our future
+	9. Mount Vesuvius eruption: Extreme heat turned man's brain to glass
+	10. Why Guyana's rainforests are a scientist's dream
+
+test 16:
+1	1. Mars: Vast amount of water may be locked up on planet
+2	2. Muons: Strong evidence found for a new force of nature
+1	3. Climate change: UN panel signals red alert on Blue Planet
+2	4. Climate change: How hot cities could be in 2050
+1	5. Climate change: Unprecedented ice loss as Greenland breaks record
+2	6. Superconductors: Material raises hope of energy revolution
+2	7. Golden tongue helps ensure maple syrup quality
+2	8. Rocking like a baby promotes better sleep in adults
+1	9. AI conquers challenge of 1980's platform games
+1	10. Climate change: Covid pandemic has little impact on rise in CO2
+prec: 10
+score: 15
+
+
+query: internet
+	1. Then and now: A megadrought in California
+	2. Square Kilometre Array project frets about satellite interference
+	3. Mega-constellation firms meet European astronomers
+	4. Satellite constellations: Astronomers warn of threat to view of Universe
+	5. SpaceX sends 60 more Starlink satellites into orbit
+L	6. Teens, tech and mental health: Oxford study finds no link
+	7. Does 5G pose health risks?
+	8. Australia storms: Floods spark evacuation warnings for NSW towns
+	9. Will Cape Town be the first city to run out of water?
+	10. Coronavirus: Sheffield has highest infection rates after London
+
+test 17:
+1	1. Mars: Vast amount of water may be locked up on planet
+2	2. Muons: Strong evidence found for a new force of nature
+1	3. Climate change: UN panel signals red alert on Blue Planet
+2	4. Climate change: How hot cities could be in 2050
+1	5. Climate change: Unprecedented ice loss as Greenland breaks record
+2	6. Superconductors: Material raises hope of energy revolution
+2	7. Golden tongue helps ensure maple syrup quality
+2	8. Rocking like a baby promotes better sleep in adults
+1	9. AI conquers challenge of 1980's platform games
+1	10. Climate change: Covid pandemic has little impact on rise in CO2
+prec: 10
+score: 15
+
+
+query: wildlife
+	1. Traffic noise impairs songbirds' abilities
+L	2. Reconstructing the world's gibbest dinosaur
+	3. Is Netflix's Seaspiracy film right about fishing damaging the oceans?
+	4. A68 iceberg on collision path with South Georgia
+	5. Giant Antarctic iceberg A86a is not done yet
+	6. Why Guyana's rainforests are a scientist's dream
+	7. Ocean noise: Study to measure the ocean's year of quiet
+	8. Cities struggling to boost urban tree cover
+	9. Hundreads of sewage leaks detected thanks to AI
+	10. A68a: World's biggest iceberg is fraying at the edges
+
+test 18:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Muons: Strong evidence found for a new force of nature
+1	4. Climate change: Unprecedented ice loss as Greenland breaks record
+2	5. Superconductors: Material raises hope of energy revolution
+2	6. Rocking like a baby promotes better sleep in adults
+2	7. Golden tongue helps ensure maple syrup quality
+1	8. AI conquers challenge of 1980's platform games
+2	9. Rising carbon dioxide levels impair coral growth
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 10
+score: 15
+
+
+query: asia
+	1. Climate change: UN panel signals red alert on Blue Planet
+	2. Global map of bees created in conservation first
+L	3. Covid: Disposable masks pose pollutants risk, study finds
+	4. Climate change: Temperature analysis shows UN goals within reach
+	5. Climate change: Have countries kept their promises?
+	6. Wild maple trees in serious need of conservation
+	7. Covid vaccine update: Those that work - and the others on the way
+	8. Coronavirus: Is the world winning the pandemic fight?
+	9. Coronavirus: Is the epidemic finally coming to an end in India?
+	10. Climate change: Consumer pose growing threat to tropical forests
+
+test 19:
+1	1. Mars: Vast amount of water may be locked up on planet
+1	2. Climate change: UN panel signals red alert on Blue Planet
+2	3. Muons: Strong evidence found for a new force of nature
+1	4. Climate change: Unprecedented ice loss as Greenland breaks record
+2	5. Superconductors: Material raises hope of energy revolution
+2	6. Rocking like a baby promotes better sleep in adults
+2	7. Golden tongue helps ensure maple syrup quality
+1	8. AI conquers challenge of 1980's platform games
+2	9. Rising carbon dioxide levels impair coral growth
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 10
+score: 15
+
+
+query: climate
+	1. Mars: Vast amount of water may be locked up on planet
+	2. Climate change: UN panel signals red alert on Blue Planet
+	3. Climate change: Unprecedented ice loss as Greenland breaks record
+L	4. Climate change: World's glaciers melting at a faster pace
+	5. Climate change: Blue skies pushed Greenland into the red
+	6. Reconstructing the world's biggest dinosaur
+	7. Climate change: How hot cities could be in 2050
+	8. Australia fires were far worse than any prediction
+	9. Climate change: Bleak outlook as carbon emissions gap grows
+	10. A68: Iceberg that became a social media star melts away
+
+test 20:
+2	1. Muons: Strong evidence found for a new force of nature
+1	2. Mars: Vast amount of water may be locked up on planet
+1	3. Climate change: UN panel signals red alert on Blue Planet
+1	4. Climate change: Unprecedented ice loss as Greenland breaks record
+2	5. Golden tongue helps ensure maple syrup quality
+2	6. Superconductors: Material raises hope of energy revolution
+2	7. Rocking like a baby promotes better sleep in adults
+1	8. AI conquers challenge of 1980's platform games
+2	9. Rising carbon dioxide levels impair coral growth
+1	10. Climate change: Blue skies pushed Greenland into the red
+prec: 10
+score: 15
