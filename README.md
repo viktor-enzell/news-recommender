@@ -29,8 +29,8 @@ unzip d2v_120k_pre.zip
 
 Populate Elasticsearch with news articles by first creating an index and then loading the already crawled articles into the index.
 ```
-elasticdump --input=./es/scrapy-1-mapping.json --output=http://localhost:9200/scrapy-1 --type=mapping
-elasticdump --input=./es/scrapy-1.json --output=http://localhost:9200/scrapy-1 --type=data
+elasticdump --input=./es/articles-mapping.json --output=http://localhost:9200/articles --type=mapping
+elasticdump --input=./es/articles.json --output=http://localhost:9200/articles --type=data
 ```
 
 Initialize user profiles.
@@ -66,6 +66,7 @@ python manage.py encode
 The project is roughly structured as follows. 
 ```
 es/ <- pre-crawled news articles
+experiments/ <- experimental results
 project/ <- project settings
 recommender/
     management/

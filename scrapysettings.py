@@ -1,4 +1,4 @@
-import settings
+from modelsettings import *
 
 ITEM_PIPELINES = {
     'scrapyelasticsearch.scrapyelasticsearch.ElasticSearchPipeline': 500

@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         data = []
-        with open('./es/scrapy-2021-05-data.json', encoding='utf8') as f:
+        with open('./es/articles.json', encoding='utf8') as f:
             it = loads(f.read())
             data = list(it)
 
